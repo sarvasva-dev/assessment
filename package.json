@@ -1,0 +1,29 @@
+{
+  "name": "testplatform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^7.5.8",
+    "lucide-react": "^1.21.0",
+    "mongoose": "^9.7.2",
+    "next": "^16.2.9",
+    "papaparse": "^5.5.4",
+    "puppeteer": "^25.2.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "recharts": "^3.9.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "eslint-config-next": "^16.2.9",
+    "jest": "^30.4.2"
+  }
+}
