@@ -204,6 +204,7 @@ export default function CreateTest() {
     }
 
     setIsPublishing(true);
+    setError(null);
 
     try {
       // Backend API ko POST request bhej rahe hain naya test save karne ke liye
