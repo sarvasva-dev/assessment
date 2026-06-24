@@ -20,7 +20,7 @@ export default function StudentTestEnvironment() {
   // Sync answers to sessionStorage
   const [answers, setAnswers] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('testAnswers');
+      const saved = sessionStorage.getItem(`testAnswers_${code}`);
       return saved ? JSON.parse(saved) : {};
     }
     return {};
@@ -30,7 +30,7 @@ export default function StudentTestEnvironment() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [endTime, setEndTime] = useState(() => {
     if (typeof window !== 'undefined') {
-      return parseInt(sessionStorage.getItem('testEndTime'), 10) || null;
+      return parseInt(sessionStorage.getItem(`testEndTime_${code}`), 10) || null;
     }
     return null;
   });
@@ -38,7 +38,7 @@ export default function StudentTestEnvironment() {
   // Warning counter synced to sessionStorage so refresh doesn't bypass it
   const [warnings, setWarnings] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('testWarnings');
+      const saved = sessionStorage.getItem(`testWarnings_${code}`);
       return saved ? parseInt(saved, 10) : 0;
     }
     return 0;
@@ -52,7 +52,7 @@ export default function StudentTestEnvironment() {
   // Proctoring logs synced to sessionStorage
   const [proctoringLogs, setProctoringLogs] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('testLogs');
+      const saved = sessionStorage.getItem(`testLogs_${code}`);
       return saved ? JSON.parse(saved) : [];
     }
     return [];
@@ -61,12 +61,12 @@ export default function StudentTestEnvironment() {
   // Sync answers and warnings to storage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem('testWarnings', warnings.toString());
-      sessionStorage.setItem('testLogs', JSON.stringify(proctoringLogs));
-      sessionStorage.setItem('testAnswers', JSON.stringify(answers));
-      if (endTime) sessionStorage.setItem('testEndTime', endTime.toString());
+      sessionStorage.setItem(`testWarnings_${code}`, warnings.toString());
+      sessionStorage.setItem(`testLogs_${code}`, JSON.stringify(proctoringLogs));
+      sessionStorage.setItem(`testAnswers_${code}`, JSON.stringify(answers));
+      if (endTime) sessionStorage.setItem(`testEndTime_${code}`, endTime.toString());
     }
-  }, [warnings, proctoringLogs, answers, endTime]);
+  }, [warnings, proctoringLogs, answers, endTime, code]);
 
   useEffect(() => {
     const fetchTest = async () => {

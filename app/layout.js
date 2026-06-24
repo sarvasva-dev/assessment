@@ -10,7 +10,7 @@ import './globals.css';
  */
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://assessment.sarthakml.in'),
   title: 'TestPlatform | Next-Generation Online Assessments',
   description: 'Enterprise-grade online MCQ test platform for Colleges & Coaching Institutes. Features anti-cheat, dynamic forms, and comprehensive analytics.',
   keywords: ['online exam', 'assessment platform', 'mcq test', 'anti-cheat exam', 'student evaluation'],

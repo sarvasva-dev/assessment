@@ -113,7 +113,7 @@ export default function CreateTest() {
     // Input element ka naam (name) aur value nikal rahe hain
     const { name, value } = e.target;
     // testDetails state ko update kar rahe hain, purana state spread karke naya value daal rahe hain
-    setTestDetails(prev => ({ ...prev, [name]: value }));
+    setTestDetails(prev => ({ ...prev, [name]: name === 'duration' ? Number(value) : value }));
   };
 
   // Checkbox inputs (settings) ko handle karne ka function
