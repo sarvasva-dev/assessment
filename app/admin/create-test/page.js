@@ -66,6 +66,7 @@ export default function CreateTest() {
 
   // Koi error message dikhana ho uske liye state
   const [error, setError] = useState(null);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   // Download Sample Excel Handler
   const downloadSampleExcel = () => {
@@ -202,6 +203,8 @@ export default function CreateTest() {
       return;
     }
 
+    setIsPublishing(true);
+
     try {
       // Backend API ko POST request bhej rahe hain naya test save karne ke liye
       const response = await fetch('/api/tests', {
@@ -232,6 +235,8 @@ export default function CreateTest() {
       // Catch block mein error state set kar rahe hain taaki screen par laal alert dikhe
       setError(err.message);
       console.error(err);
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -553,8 +558,13 @@ export default function CreateTest() {
 
         {/* Submit Button Area */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-          <button type="submit" className="btn btn-dark" style={{ padding: '16px 40px', fontSize: '16px' }}>
-            🚀 Create & Publish Test
+          <button 
+            type="submit" 
+            className="btn btn-dark" 
+            style={{ padding: '16px 40px', fontSize: '16px', cursor: isPublishing ? 'not-allowed' : 'pointer', opacity: isPublishing ? 0.7 : 1 }}
+            disabled={isPublishing}
+          >
+            {isPublishing ? '⏳ Publishing...' : '🚀 Create & Publish Test'}
           </button>
         </div>
 
