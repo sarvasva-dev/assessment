@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 /**
@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
  * Step 1: Verify Join Code
  * Step 2: Fill Dynamic Form fields & Branding
  */
-export default function StudentJoinPage() {
+function JoinPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -207,5 +207,13 @@ export default function StudentJoinPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function StudentJoinPage() {
+  return (
+    <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#f8fafc' }}>Loading...</div>}>
+      <JoinPageContent />
+    </Suspense>
   );
 }
